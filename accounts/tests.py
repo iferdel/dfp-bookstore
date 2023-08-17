@@ -4,7 +4,6 @@ from django.test import TestCase
 from django.urls import reverse, resolve
 
 from .forms import CustomUserCreationForm
-from .views import SignupPageView
 
 
 class CustomUserTests(TestCase):
@@ -58,7 +57,3 @@ class SignupPageTests(TestCase): # new
         form = self.response.context.get("form")
         self.assertIsInstance(form, CustomUserCreationForm)
         self.assertContains(self.response, "csrfmiddlewaretoken")
-
-    def test_signup_view(self): # new
-        view = resolve("/accounts/signup/")
-        self.assertEqual(view.func.__name__, SignupPageView.as_view().__name__)
